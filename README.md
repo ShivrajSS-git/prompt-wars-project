@@ -39,12 +39,6 @@ Navigating the electoral process can be complex. IndiaElect simplifies this by p
    npm run dev
    ```
 
-4. Open your browser and navigate to `http://localhost:5173/`.
-
-## 📜 Competition Guidelines Followed
-- Repository size is strictly under 10 MB (node_modules excluded).
-- Maintained a single branch (`main`).
-- Public GitHub repository format.
-
+4. Open your browser and navigate to `http://localhost:5173/`
 ---
 *Empowering Democracy through Education.*
