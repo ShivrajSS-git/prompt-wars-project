@@ -1,5 +1,5 @@
 # Stage 1: Build the React application
-FROM node:18-alpine AS build
+FROM node:20-alpine AS build
 
 WORKDIR /app
 
@@ -16,7 +16,7 @@ COPY . .
 RUN npm run build
 
 # Stage 2: Serve the application using Node 'serve'
-FROM node:18-alpine
+FROM node:20-alpine
 
 WORKDIR /app
 
@@ -27,4 +27,4 @@ RUN npm install -g serve
 COPY --from=build /app/dist ./dist
 
 # Start the server using the PORT environment variable provided by Cloud Run
-CMD serve -s dist -l $PORT
+CMD ["sh", "-c", "serve -s dist -l ${PORT:-8080}"]
