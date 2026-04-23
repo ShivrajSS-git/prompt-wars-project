@@ -15,16 +15,16 @@ COPY . .
 # Build the app for production
 RUN npm run build
 
-# Stage 2: Serve the application with Nginx
-FROM nginx:alpine
+# Stage 2: Serve the application using Node 'serve'
+FROM node:18-alpine
 
-# Copy the build output to replace the default nginx contents.
-COPY --from=build /app/dist /usr/share/nginx/html
+WORKDIR /app
 
-# Copy our custom nginx configuration
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Install 'serve' globally
+RUN npm install -g serve
 
-# Expose port 8080 (Cloud Run default)
-EXPOSE 8080
+# Copy the build output from the first stage
+COPY --from=build /app/dist ./dist
 
-CMD ["nginx", "-g", "daemon off;"]
+# Start the server using the PORT environment variable provided by Cloud Run
+CMD serve -s dist -l $PORT
