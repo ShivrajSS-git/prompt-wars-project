@@ -60,18 +60,26 @@ export const electionStages = [
 export const commonQuestions = [
   {
     q: "How do I check if my name is on the voter list?",
-    a: "You can check your name on the Electoral Roll by visiting the National Voters' Service Portal (NVSP) or using the Voter Helpline App provided by the ECI."
+    a: "Visit voters.eci.gov.in and enter your details or EPIC number. You can also call the 1950 helpline or check via the Voter Helpline App."
   },
   {
     q: "What is an EVM and VVPAT?",
-    a: "EVM stands for Electronic Voting Machine, used to record your vote. VVPAT (Voter Verifiable Paper Audit Trail) prints a slip so you can visually verify your vote was recorded correctly."
+    a: "EVM (Electronic Voting Machine) records your vote electronically. VVPAT (Voter Verifiable Paper Audit Trail) prints a paper slip for 7 seconds, showing the candidate's serial number, name, and symbol, allowing you to verify your vote."
   },
   {
     q: "Can I vote if I don't have an EPIC card?",
-    a: "Yes, if your name is on the electoral roll, you can vote by showing alternative approved ID proofs like an Aadhar Card, PAN Card, Passport, or Driving License."
+    a: "Yes! If your name is in the Electoral Roll, you can use any of the 12 alternative identity documents including Aadhar Card, PAN Card, Driving License, or MNREGA Job Card."
+  },
+  {
+    q: "How to register as a new voter?",
+    a: "If you are 18+ on the qualifying date, fill Form 6 on the Voter Portal (voters.eci.gov.in) or submit it to your Booth Level Officer (BLO)."
   },
   {
     q: "What is NOTA?",
-    a: "NOTA stands for 'None Of The Above'. It is an option on the EVM allowing voters to officially register their rejection of all candidates contesting in their constituency."
+    a: "None Of The Above (NOTA) is the last button on the EVM. It allows you to record that you don't support any of the candidates while still participating in the voting process."
+  },
+  {
+    q: "How do I find my polling station?",
+    a: "You can find your polling booth on your 'Voter Information Slip' or by using the ECI portal (voters.eci.gov.in) under 'Know Your Polling Station'."
   }
 ];

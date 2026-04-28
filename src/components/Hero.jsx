@@ -1,88 +1,103 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ChevronRight, ShieldCheck } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Vote, Users, Target, CheckCircle2 } from 'lucide-react';
 
 const Hero = ({ setCurrentPage }) => {
   return (
-    <section className="container py-20 text-center relative">
-      {/* Decorative Orbs */}
-      <div className="absolute top-10 left-10 w-32 h-32 bg-indigo-500/10 rounded-full blur-3xl animate-float" />
-      <div className="absolute bottom-10 right-10 w-48 h-48 bg-purple-500/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
-
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-      >
-        <div className="inline-flex items-center gap-2 bg-saffron-500/10 border border-saffron-500/20 px-4 py-2 rounded-full text-saffron-500 text-sm font-medium mb-8">
-          <ShieldCheck size={16} />
-          <span>Guide to the World's Largest Democracy</span>
-        </div>
-        
-        <h1 className="text-5xl md:text-7xl font-bold mb-6 gradient-text">
-          Master the Indian <br /> Election Process
-        </h1>
-        
-        <p className="text-lg text-slate-400 max-w-2xl mx-auto mb-10">
-          Navigate the complexities of voter registration, EVMs, and polling day with our 
-          interactive assistant. Empowering every citizen to exercise their franchise.
-        </p>
-        
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <button 
-            onClick={() => setCurrentPage('process')}
-            className="primary flex items-center gap-2 text-lg px-8 py-3"
+    <section className="container py-24 min-h-[80vh] flex flex-col justify-center overflow-hidden" aria-labelledby="hero-heading">
+      <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="relative z-10 text-left"
+        >
+          <div 
+            className="inline-flex items-center gap-2 bg-saffron-500/10 border border-saffron-500/20 px-6 py-2 rounded-full text-saffron-600 dark:text-saffron-400 text-xs font-black uppercase tracking-widest mb-10"
+            role="status"
           >
-            Start Your Journey
-            <ChevronRight size={20} />
-          </button>
-          <button 
-            onClick={() => setCurrentPage('checklist')}
-            className="secondary text-lg px-8 py-3"
-          >
-            Learn More
-          </button>
-        </div>
-      </motion.div>
+            <ShieldCheck size={14} aria-hidden="true" />
+            <span>2024 General Elections Portal</span>
+          </div>
+          
+          <h1 id="hero-heading" className="text-7xl md:text-[7rem] font-black mb-10 tracking-tighter text-slate-900 dark:text-white leading-[0.9]">
+            Democracy <br /> <span className="text-saffron-600">Reimagined.</span>
+          </h1>
+          
+          <p className="text-xl text-slate-600 dark:text-slate-400 max-w-xl mb-12 font-medium leading-relaxed">
+            Your digital gateway to the world's largest democratic exercise. 
+            Navigating the Indian electoral process has never been this elegant.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row items-center gap-6">
+            <button 
+              onClick={() => setCurrentPage('process')}
+              className="primary w-full sm:w-auto"
+              aria-label="Begin Guide"
+            >
+              Start Your Journey <ArrowRight className="ml-2" size={20} />
+            </button>
+            <button 
+              onClick={() => setCurrentPage('checklist')}
+              className="secondary w-full sm:w-auto"
+              aria-label="View Voter Checklist"
+            >
+              Verify Voter Status
+            </button>
+          </div>
+        </motion.div>
 
-      <style jsx>{`
-        section {
-          padding: 6rem 2rem;
-          text-align: center;
-        }
-        h1 {
-          font-size: 4rem;
-          line-height: 1.1;
-          margin-bottom: 1.5rem;
-          background: linear-gradient(to bottom right, #fff, #94a3b8);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-        }
-        p {
-          font-size: 1.25rem;
-          color: var(--text-muted);
-          max-width: 40rem;
-          margin: 0 auto 3rem;
-        }
-        .cta-group {
-          display: flex;
-          gap: 1rem;
-          justify-content: center;
-        }
-        .badge {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.5rem;
-          padding: 0.5rem 1rem;
-          background: rgba(99, 102, 241, 0.1);
-          border: 1px solid rgba(99, 102, 241, 0.2);
-          border-radius: 9999px;
-          color: var(--accent-indigo);
-          font-size: 0.875rem;
-          font-weight: 500;
-          margin-bottom: 2rem;
-        }
-      `}</style>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9, rotate: -2 }}
+          animate={{ opacity: 1, scale: 1, rotate: 0 }}
+          transition={{ duration: 1, delay: 0.2 }}
+          className="relative hidden lg:block"
+        >
+          {/* Main Card */}
+          <div className="glass p-12 relative z-10 border border-white/20 dark:border-white/5 animate-float shadow-2xl">
+            <div className="flex items-center gap-4 mb-8">
+              <div className="w-14 h-14 rounded-2xl bg-saffron-600 flex items-center justify-center text-white shadow-xl shadow-saffron-600/20">
+                <Vote size={32} />
+              </div>
+              <div>
+                <h3 className="text-2xl font-black text-slate-900 dark:text-white">Electoral Command</h3>
+                <p className="text-sm text-slate-500 font-bold uppercase tracking-wider">Phase: Preparation</p>
+              </div>
+            </div>
+            
+            <div className="space-y-6">
+              {[
+                { label: 'Voter Turnout Target', val: '70%+', color: 'bg-blue-600', icon: Target },
+                { label: 'New Registrations', val: '1.2M+', color: 'bg-green-600', icon: Users },
+                { label: 'Booth Verification', val: '98%', color: 'bg-saffron-600', icon: CheckCircle2 }
+              ].map((stat, i) => (
+                <div key={i} className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800 flex justify-between items-center group hover:border-saffron-500/50 transition-all cursor-default">
+                  <div className="flex items-center gap-3">
+                    <stat.icon size={18} className="text-slate-400 group-hover:text-saffron-600" />
+                    <span className="font-bold text-slate-600 dark:text-slate-400">{stat.label}</span>
+                  </div>
+                  <span className={`px-4 py-1.5 rounded-full text-xs font-black text-white ${stat.color} shadow-lg`}>{stat.val}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-8 pt-8 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+              <div className="flex -space-x-3">
+                {[1,2,3,4].map(i => (
+                  <div key={i} className="w-10 h-10 rounded-full border-2 border-white dark:border-slate-900 bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-[10px] font-black text-slate-600">
+                    ID{i}
+                  </div>
+                ))}
+              </div>
+              <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">Live Updates: On</p>
+            </div>
+          </div>
+          
+          {/* Decorative Glows */}
+          <div className="absolute -top-20 -right-20 w-80 h-80 bg-saffron-600/10 rounded-full blur-[100px]" />
+          <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-blue-600/10 rounded-full blur-[100px]" />
+        </motion.div>
+      </div>
     </section>
   );
 };

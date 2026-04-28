@@ -31,21 +31,28 @@ const VoterChecklist = () => {
   const progress = Math.round((items.filter(i => i.completed).length / items.length) * 100);
 
   return (
-    <section id="checklist" className="container py-20 relative">
+    <section id="checklist" className="container py-20 relative" aria-labelledby="checklist-heading">
       <div className="glass p-8 md:p-12 max-w-3xl mx-auto border-indigo-500/10">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
           <div>
-            <h2 className="text-3xl font-bold mb-2">Voter Readiness Checklist</h2>
+            <h2 id="checklist-heading" className="text-3xl font-bold mb-2">Voter Readiness Checklist</h2>
             <p className="text-slate-400">Track your preparation for the upcoming election.</p>
           </div>
-          <div className="text-right">
+          <div className="text-right" role="status" aria-live="polite">
             <div className="text-4xl font-bold text-saffron-400">{progress}%</div>
             <div className="text-sm text-slate-500 font-medium uppercase tracking-wider">Complete</div>
           </div>
         </div>
 
         {/* Progress Bar */}
-        <div className="w-full h-2 bg-slate-800 rounded-full mb-10 overflow-hidden">
+        <div 
+          className="w-full h-2 bg-slate-800 rounded-full mb-10 overflow-hidden"
+          role="progressbar"
+          aria-valuenow={progress}
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-label="Voter readiness progress"
+        >
           <motion.div 
             className="h-full bg-gradient-to-r from-green-500 to-saffron-500"
             initial={{ width: 0 }}
@@ -54,11 +61,12 @@ const VoterChecklist = () => {
           />
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-4" role="group" aria-label="Checklist items">
           {items.map((item) => (
             <button
               key={item.id}
               onClick={() => toggleItem(item.id)}
+              aria-pressed={item.completed}
               className={`w-full flex items-center gap-4 p-4 rounded-xl border transition-all text-left card-hover ${
                 item.completed 
                   ? 'bg-saffron-500/10 border-saffron-500/30 text-slate-400' 
@@ -66,9 +74,9 @@ const VoterChecklist = () => {
               }`}
             >
               {item.completed ? (
-                <CheckCircle2 className="text-saffron-500 shrink-0" size={24} />
+                <CheckCircle2 className="text-saffron-500 shrink-0" size={24} aria-hidden="true" />
               ) : (
-                <Circle className="text-slate-600 shrink-0" size={24} />
+                <Circle className="text-slate-600 shrink-0" size={24} aria-hidden="true" />
               )}
               <span className={item.completed ? 'line-through' : ''}>
                 {item.text}
@@ -78,23 +86,6 @@ const VoterChecklist = () => {
         </div>
       </div>
       
-      <style jsx>{`
-        section {
-          padding: 5rem 0;
-        }
-        .progress-bar {
-          height: 0.5rem;
-          background: var(--secondary-bg);
-          border-radius: 1rem;
-          overflow: hidden;
-          margin-bottom: 2rem;
-        }
-        .progress-fill {
-          height: 100%;
-          background: linear-gradient(90deg, var(--accent-indigo), #818cf8);
-          transition: width 0.3s ease;
-        }
-      `}</style>
     </section>
   );
 };
